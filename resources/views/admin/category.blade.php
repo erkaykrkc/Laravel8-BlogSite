@@ -48,10 +48,14 @@
                   <td>{{ $rs->title }}</td>
                   <td>{{ $rs->status }}</td>
                   <td> 
-                    <a href="{{ route('admin_category_edit',['id'=>$rs->id]) }}"> Edit </a>
+                    <a href="{{ route('admin_category_edit',['id'=>$rs->id]) }}"> 
+                      <img class="rounded mx-auto my-auto d-block" src="{{ asset('assets/admin/images') }}/edit.png" height="35">
+                    </a>
                   </td>
                   <td>
-                    <a href="{{ route('admin_category_delete',['id'=>$rs->id]) }}" onclick="return confirm('It will be deleted ! Are you sure ?')">Delete</a> 
+                    <a href="{{ route('admin_category_delete',['id'=>$rs->id]) }}" onclick="return confirm('It will be deleted ! Are you sure ?')">
+                      <img class="rounded mx-auto my-auto d-block" src="{{ asset('assets/admin/images') }}/delete.png" height="35">
+                    </a> 
                   </td>
                 </tr>
                 @endforeach

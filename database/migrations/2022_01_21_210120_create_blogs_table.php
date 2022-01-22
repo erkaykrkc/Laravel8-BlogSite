@@ -25,7 +25,7 @@ class CreateBlogsTable extends Migration
             $table->string('author_name',100);
             $table->string('author_job',100);
             $table->string('tags',150);
-            $table->string('detail')->nullable();
+            $table->text('references')->nullable();
             $table->string('slug',100)->nullable();
             $table->string('status',5)->nullable()->default('False');
             $table->timestamps();

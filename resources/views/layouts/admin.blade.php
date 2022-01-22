@@ -24,8 +24,8 @@
      <link
      href="{{ asset('assets') }}/admin/vendor/datatables/dataTables.bootstrap4.min.css"
      rel="stylesheet"
-    />
-    
+    /> 
+
     @yield('css')
     @yield('javascript')
 </head>

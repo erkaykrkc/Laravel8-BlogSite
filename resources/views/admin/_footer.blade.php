@@ -63,4 +63,5 @@ aria-hidden="true">
 <!-- Page level custom scripts -->
 <script src="{{ asset('assets') }}/admin/js/demo/datatables-demo.js"></script>
 
+
 @yield('footer')

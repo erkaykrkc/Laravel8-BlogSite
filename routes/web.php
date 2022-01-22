@@ -55,6 +55,19 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::get('/show',[\App\Http\Controllers\Admin\BlogController::class,'show'])->name('admin_blog_show');
     });
 
+    /*Images Routes */
+
+    Route::prefix('image')->group(function(){    
+    Route::get('/create/{blog_id}',[\App\Http\Controllers\Admin\ImageController::class,'create'])->name('admin_image_add');
+    Route::post('/store/{blog_id}',[\App\Http\Controllers\Admin\ImageController::class,'store'])->name('admin_image_store');
+    Route::get('/delete/{id}/{blog_id}',[\App\Http\Controllers\Admin\ImageController::class,'destroy'])->name('admin_image_delete');
+    Route::get('/show',[\App\Http\Controllers\Admin\ImageController::class,'show'])->name('admin_image_show');
+    });
+
+    /* Setting */ 
+    Route::get('/setting',[\App\Http\Controllers\Admin\SettingController::class,'index'])->name('admin_setting');
+    Route::post('/setting/update',[\App\Http\Controllers\Admin\SettingController::class,'update'])->name('admin_setting_update');
+
 });
 
 

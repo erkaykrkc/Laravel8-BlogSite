@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -47,14 +48,14 @@ class BlogController extends Controller
         $data->description=$request->input('description');
         $data->slug=$request->input('slug');
         $data->status=$request->input('status');
-        // $data->image=$request->input('image');
+        $data->image=Storage::putFile('images',$request->file('image')); // Dosya yükleme
         $data->category_id=$request->input('category_id');
         $data->user_id=Auth::id();
         $data->content=$request->input('content');
         $data->author_name=$request->input('author_name');
         $data->author_job=$request->input('author_job');
         $data->tags=$request->input('tags');
-        $data->detail=$request->input('detail');
+        $data->references=$request->input('references');
         $data->save();
         
         return redirect()->route('admin_blogs');
@@ -99,14 +100,14 @@ class BlogController extends Controller
         $data->description=$request->input('description');
         $data->slug=$request->input('slug');
         $data->status=$request->input('status');
-        // $data->image=$request->input('image');
+        $data->image=Storage::putFile('images',$request->file('image'));
         $data->category_id=$request->input('category_id');
         $data->user_id=Auth::id();
         $data->content=$request->input('content');
         $data->author_name=$request->input('author_name');
         $data->author_job=$request->input('author_job');
         $data->tags=$request->input('tags');
-        $data->detail=$request->input('detail');
+        $data->references=$request->input('references');
         $data->save();
         
         return redirect()->route('admin_blogs');

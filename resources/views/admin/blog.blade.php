@@ -35,8 +35,8 @@
                   <th>ID</th>
                   <th>Category</th>
                   <th>Title</th>
-                  <th>Content</th>
                   <th>Image</th>
+                  <th>Image Gallery</th>
                   <th>Author Name</th>
                   <th>Author Job</th>
                   <th>Status</th>
@@ -50,16 +50,28 @@
                   <td>{{ $rs->id }}</td>
                   <td>{{ $rs->category_id }}</td>
                   <td>{{ $rs->title }}</td>
-                  <td>{{ $rs->content }}</td>
-                  <td>{{ $rs->image }}</td>
+                  <td>
+                       @if($rs->image)
+                       
+                         <img src="{{ Storage::url($rs->image)}}" height="60" width="100" alt="">
+                       
+                       @endif
+                  </td>
+                  <td><a href="{{ route('admin_image_add',['blog_id'=>$rs->id]) }}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100, height=700')">
+                    <img class="rounded mx-auto my-2 d-block" src="{{ asset('assets/admin/images') }}/gallery.png" height="35">
+                  </a></td>
                   <td>{{ $rs->author_name }}</td>
                   <td>{{ $rs->author_job }}</td>
                   <td>{{ $rs->status }}</td>
                   <td> 
-                    <a href="{{ route('admin_blog_edit',['id'=>$rs->id]) }}"> Edit </a>
+                    <a href="{{ route('admin_blog_edit',['id'=>$rs->id]) }}">
+                      <img class="rounded mx-auto my-auto d-block" src="{{ asset('assets/admin/images') }}/edit.png" height="35">
+                    </a>
                   </td>
                   <td>
-                    <a href="{{ route('admin_blog_delete',['id'=>$rs->id]) }}" onclick="return confirm('It will be deleted ! Are you sure ?')">Delete</a> 
+                    <a href="{{ route('admin_blog_delete',['id'=>$rs->id]) }}" onclick="return confirm('It will be deleted ! Are you sure ?')">
+                      <img class="rounded mx-auto my-auto d-block" src="{{ asset('assets/admin/images') }}/delete.png" height="35">
+                    </a> 
                   </td>
                 </tr>
                 @endforeach
