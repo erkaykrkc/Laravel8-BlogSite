@@ -30,7 +30,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $datalist=Category::all();
+        $datalist=Category::with('children')->get();
         return view('admin.blog_add',['datalist'=>$datalist]);
     }
 
@@ -81,7 +81,7 @@ class BlogController extends Controller
     public function edit(Blog $blog,$id)
     {
         $data=Blog::find($id);
-        $datalist=Category::all();
+        $datalist=Category::with('children')->get();
         return view('admin.blog_edit',['data'=>$data,'datalist'=>$datalist]);
     }
 
@@ -100,7 +100,6 @@ class BlogController extends Controller
         $data->description=$request->input('description');
         $data->slug=$request->input('slug');
         $data->status=$request->input('status');
-        $data->image=Storage::putFile('images',$request->file('image'));
         $data->category_id=$request->input('category_id');
         $data->user_id=Auth::id();
         $data->content=$request->input('content');
@@ -108,8 +107,14 @@ class BlogController extends Controller
         $data->author_job=$request->input('author_job');
         $data->tags=$request->input('tags');
         $data->references=$request->input('references');
+
+        if($request->file('image')!=null)
+        {
+            $data->image=Storage::putFile('images',$request->file('image')); // Resim Yükleme
+        }
+
         $data->save();
-        
+
         return redirect()->route('admin_blogs');
     }
 

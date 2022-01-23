@@ -48,7 +48,9 @@
                 @foreach ($datalist as $rs )
                 <tr>
                   <td>{{ $rs->id }}</td>
-                  <td>{{ $rs->category_id }}</td>
+                  <td>
+                    {{ \App\Http\Controllers\Admin\CategoryController::getParentsTree($rs->category,$rs->category->title) }}
+                  </td>
                   <td>{{ $rs->title }}</td>
                   <td>
                        @if($rs->image)

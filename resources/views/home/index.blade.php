@@ -1,12 +1,17 @@
+@php
+$setting = \App\Http\Controllers\HomeController::getsetting();
+@endphp
+
 @extends('layouts.home')
 
-@section('title','KarBlog')
+@section('title', $setting->title)
+
 
 @section('description')
-    Türkiye'nin en kaliteli blog sayfası
+    {{ $setting->description }}
 @endsection
 
-@section('keywords','Yazılım,Teknoloji,Sağlık')
+@section('keywords','$setting->keywords')
 
 
 @section('content')

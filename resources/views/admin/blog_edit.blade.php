@@ -26,13 +26,15 @@
     <form action="{{ route('admin_blog_update',['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-          <label>Parent</label>
+          <label>Category</label>
           <div class="form-group">
             <select class="custom-select mr-sm-2" name="category_id" id="inlineFormCustomSelect">
 
 
               @foreach ($datalist as $rs)
-              <option  value="{{ $rs->id }}" @if ($rs->id==$data->category_id) selected="selected" @endif > {{ $rs->title }}</option>
+              <option  value="{{ $rs->id }}" @if ($rs->id==$data->category_id) selected="selected" @endif > 
+                {{ \App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title) }}
+              </option>
               @endforeach
             </select>
           </div>
@@ -64,7 +66,7 @@
         </div>
         <div class="form-group">
           <label>Image</label>
-          <input type="file" name="image"  value="{{ $data->image }}" class="form-control">
+          <input type="file" name="image" class="form-control">
           @if($rs->image)
           {
              <img src="{{ Storage::url('$rs->image')}}" height="60" alt="">

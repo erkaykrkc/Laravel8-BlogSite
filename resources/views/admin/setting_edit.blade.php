@@ -19,10 +19,11 @@
 
  <!-- Begin Page Content -->
  <div class="container-fluid">
+   
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-3 pb-3 text-gray-800 border-bottom-primary">Ayarları Düzenle</h1>
-
+    <h1 class="h3 mb-3 pb-3 text-gray-800 border-bottom-primary">Ayarları Düzenle</h1>  
+   
     <form action="{{ route('admin_setting_update') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
