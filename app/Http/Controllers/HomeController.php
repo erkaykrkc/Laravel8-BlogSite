@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Setting;
+use App\Models\Message;
+use App\Models\Blog;
+
 
 class HomeController extends Controller
 {
@@ -21,9 +24,38 @@ class HomeController extends Controller
     public function index()
     {
         $setting=Setting::first();
-        return view('home.index',['setting'=>$setting]);
+        $slider=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->get();
+        $daily=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder()->get();
+        $last=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder('id')->get();
+        $data=[
+            'setting'=>$setting,
+            'slider'=>$slider,
+            'daily'=>$daily,
+            'last'=>$last,
+        ];
+
+        return view('home.index',$data);
     }
-    
+
+    public function blog($id,$slug)
+    {
+        $data=Blog::find($id);
+       
+    }
+
+    public function gotoblog($id)
+    {
+        $data=Blog::find($id);
+       
+    }
+
+    public function categoryblogs($id,$slug)
+    {
+        $datalist=Blog::where('category_id',$id)->get();
+        $data=Category::find($id);
+        return view('home.category_blogs',['data'=>$data,'datalist'=>$datalist]);
+    }
+
     public function aboutus()
     {
         $setting=Setting::first();
@@ -34,6 +66,18 @@ class HomeController extends Controller
     {
         $setting=Setting::first();
         return view('home.contact',['setting'=>$setting]);
+    }
+
+    public function sendmessage(Request $request)
+    {
+        $data=new Message();
+        $data->name=$request->input('name');
+        $data->email=$request->input('email');
+        $data->phone=$request->input('phone');
+        $data->subject=$request->input('subject');
+        $data->message=$request->input('message');
+        $data->save();
+        return redirect()->route('contact')->with('success','Mesajınız Kaydedilmiştir. Teşekkür Ederiz..');
     }
     
     public function faq()

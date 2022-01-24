@@ -27,21 +27,28 @@
         </a>
     </li>
 
-     <!-- Nav Item - Utilities Collapse Menu -->
-     <li class="nav-item">
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('admin_blogs') }}">
             <i style="font-size:16px" class="fas fa-fw fa-rss"></i>
             <span style="font-size:18px">Bloglar</span>
         </a>
     </li>
     
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('admin_message') }}">
+            <i style="font-size:16px" class="fas fa-envelope-square"></i>
+            <span style="font-size:18px">Contact Messages</span>
+        </a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('admin_setting') }}">
-            <i style="font-size:16px" class="fas fa-cogs"></i>
+            <i style="font-size:16px" class="fas fa-envelope-square"></i>
             <span style="font-size:18px">Settings</span>
         </a>
     </li>

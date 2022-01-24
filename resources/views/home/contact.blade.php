@@ -11,7 +11,7 @@ $setting = \App\Http\Controllers\HomeController::getsetting();
     {{ $setting->description }}
 @endsection
 
-@section('keywords','$setting->keywords')
+@section('keywords',$setting->keywords)
 
 
 @section('content')
@@ -39,7 +39,8 @@ $setting = \App\Http\Controllers\HomeController::getsetting();
                 <div class="section-title mb-3">
                     <h4 class="m-0 text-uppercase font-weight-bold">Bizimle İletişime Geçin</h4>
                 </div>
-                    <form action="" method="POST">
+                    @include('home.message')
+                    <form action="{{ route('sendmessage') }}" method="POST">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-6">

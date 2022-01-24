@@ -22,12 +22,19 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+Route::get("/",[HomeController::class,'index'])->name('home');
+
 Route::get("/home",[HomeController::class,'index'])->name('homepage');
 Route::get("/aboutus",[HomeController::class,'aboutus'])->name('aboutus');
-Route::get("/contact",[HomeController::class,'contact'])->name('contact');
 Route::get("/faq",[HomeController::class,'faq'])->name('faq');
 Route::get("/references",[HomeController::class,'references'])->name('references');
+Route::get("/contact",[HomeController::class,'contact'])->name('contact');
+Route::post("/sendmessage",[HomeController::class,'sendmessage'])->name('sendmessage');
+Route::get("/blog/{id}/{slug}",[HomeController::class,'blog'])->name('blog');
+Route::get("/categoryblogs/{id}/{slug}",[HomeController::class,'categoryblogs'])->name('categoryblogs');
+Route::get("/gotoblog/{id}",[HomeController::class,'gotoblog'])->name('gotoblog');
 
+// Route::get("/gotoblog/{id}",[HomeController::class,'gotoblog'])->whereNumber('id')->name('gotoblog');
 
 /* Admin Routes */
 Route::get("/admin",[\App\Http\Controllers\Admin\HomeController::class,'index'])->name('admin_home')->middleware('auth');
@@ -83,6 +90,16 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     /* Setting */ 
     Route::get('/setting',[\App\Http\Controllers\Admin\SettingController::class,'index'])->name('admin_setting');
     Route::post('/setting/update',[\App\Http\Controllers\Admin\SettingController::class,'update'])->name('admin_setting_update');
+
+     /* Blog Routes */
+
+     Route::prefix('messages')->group(function(){    
+        Route::get('/',[\App\Http\Controllers\Admin\MessageController::class,'index'])->name('admin_message');
+        Route::get('/edit/{id}',[\App\Http\Controllers\Admin\MessageController::class,'edit'])->name('admin_message_edit');
+        Route::post('/update/{id}',[\App\Http\Controllers\Admin\MessageController::class,'update'])->name('admin_message_update');
+        Route::get('/delete/{id}',[\App\Http\Controllers\Admin\MessageController::class,'destroy'])->name('admin_message_delete');
+        Route::get('/show',[\App\Http\Controllers\Admin\MessageController::class,'show'])->name('admin_message_show');
+        });
 
 });
 

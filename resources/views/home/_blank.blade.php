@@ -11,7 +11,7 @@ $setting = \App\Http\Controllers\HomeController::getsetting();
     {{ $setting->description }}
 @endsection
 
-@section('keywords','$setting->keywords')
+@section('keywords',$setting->keywords)
 
 
 @section('content')
