@@ -45,7 +45,6 @@ Route::post("/admin/logincheck",[HomeController::class,'logincheck'])->name('adm
 Route::get("/logout",[HomeController::class,'logout'])->name('logout');
 
 /* User Routes */ 
-
 Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function(){
     Route::get('/',[\App\Http\Controllers\UserController::class,'index'])->name('myprofile');
 });

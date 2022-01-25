@@ -81,7 +81,7 @@
                 <!-- Comment List Start -->
                  <div class="mb-3">
                     <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">Yorumlar {{ $countreview }}</h4>
+                        <h4 class="m-0 text-uppercase font-weight-bold">Yorumlar ({{ $countreview }}) </h4>
                     </div>
                     <div class="bg-white border border-top-0 p-4">
                         @foreach ($reviews as $rs)
