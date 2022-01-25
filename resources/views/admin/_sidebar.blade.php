@@ -49,6 +49,12 @@
             <span style="font-size:18px">Reviews</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('admin_faq') }}">
+            <i style="font-size:16px" class="fas fa-question"></i>
+            <span style="font-size:18px">FAQ</span>
+        </a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
