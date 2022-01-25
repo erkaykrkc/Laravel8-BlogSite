@@ -33,6 +33,8 @@ Route::post("/sendmessage",[HomeController::class,'sendmessage'])->name('sendmes
 Route::get("/blog/{id}/{slug}",[HomeController::class,'blog'])->name('blog');
 Route::get("/categoryblogs/{id}/{slug}",[HomeController::class,'categoryblogs'])->name('categoryblogs');
 Route::get("/gotoblog/{id}",[HomeController::class,'gotoblog'])->name('gotoblog');
+Route::post("/getblog",[HomeController::class,'getblog'])->name('getblog');
+Route::get("/bloglist/{search}",[HomeController::class,'bloglist'])->name('bloglist');
 
 // Route::get("/gotoblog/{id}",[HomeController::class,'gotoblog'])->whereNumber('id')->name('gotoblog');
 

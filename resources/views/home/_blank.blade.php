@@ -1,17 +1,13 @@
-@php
-$setting = \App\Http\Controllers\HomeController::getsetting();
-@endphp
-
 @extends('layouts.home')
 
-@section('title', $setting->title)
+@section('title', $data->title)
 
 
 @section('description')
-    {{ $setting->description }}
+    {{ $data->description }}
 @endsection
 
-@section('keywords',$setting->keywords)
+@section('keywords',$data->keywords)
 
 
 @section('content')

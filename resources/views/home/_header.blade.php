@@ -7,10 +7,18 @@
             </a>
         </div>
         <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-            <input type="text" class="form-control border-0 bg-primary" placeholder="Ara">
+            <!-- <input type="text" class="form-control border-0 bg-primary" placeholder="Ara"> -->
             <div class="input-group-append">
-                <button class="input-group-text bg-alert text-dark border-0 px-3">
-                    <i class="fa fa-search"></i></button>
+                <form class="form-inline" action="{{ route('getblog') }}" method="POST">
+                @csrf
+                @livewire('search')
+                <button type="submit" class="form-control input-group-text bg-alert text-dark border-0 px-2">
+                    <i class="fa fa-search"></i>
+                </button>
+                </form> 
+                @section('footerjs')
+                @livewireScripts
+                @endsection
             </div>
         </div>
     </div>

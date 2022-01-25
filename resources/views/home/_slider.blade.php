@@ -15,11 +15,11 @@
                     <div class="overlay">
                         <div class="mb-2">
                             <div class="overlay">
-                                <div class="mb-2">
+                                <div class="mb-4">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                                href="">{{ $rs->category->title }}</a>
+                                                href="{{ route('blog',['id'=>$rs->id,'slug'=>$rs->slug]) }}">{{ $rs->category->title }}</a>
                                 </div>
-                                <a class="h3 m-0 text-white text-uppercase text-info font-weight-semi-bold" href="{{ route('gotoblog',['id'=>$rs->id]) }}">{{ $rs->title }}</a>
+                                <a class="h3 m-0 text-white text-uppercase text-info font-weight-semi-bold" href="{{ route('blog',['id'=>$rs->id,'slug'=>$rs->slug]) }}">{{ $rs->title }}</a>
                             </div>
                         </div>                        
                     </div>

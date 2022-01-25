@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Setting;
 use App\Models\Message;
 use App\Models\Blog;
+use App\Models\Review;
 
 
 class HomeController extends Controller
@@ -21,12 +22,22 @@ class HomeController extends Controller
         return Setting::first();
     }
 
+    public static function countreview($id)
+    {
+        return Review::where('blog_id',$id)->count();
+    }
+
+    public static function avrgreview($id)
+    {
+        return Review::where('blog_id',$id)->average('rate');
+    }
+
     public function index()
     {
         $setting=Setting::first();
         $slider=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->get();
         $daily=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder()->get();
-        $last=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder('id')->get();
+        $last=Blog::select('id','category_id','content','title','image','author_name','slug')->limit(4)->inRandomOrder('id')->get();
         $data=[
             'setting'=>$setting,
             'slider'=>$slider,
@@ -40,13 +51,38 @@ class HomeController extends Controller
     public function blog($id,$slug)
     {
         $data=Blog::find($id);
-       
+        $datalist=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder()->get();
+        $reviews=Review::where('blog_id',$id)->get();
+        return view('home.blog_detail',['data'=>$data,'datalist'=>$datalist,'reviews'=>$reviews]);      
     }
 
     public function gotoblog($id)
     {
         $data=Blog::find($id);
        
+    }
+
+    public function getblog(Request $request)
+    {
+        $search=$request->input('search');
+
+        $count=Blog::where('title','like','%'.$search.'%')->get()->count();
+
+        if($count==1)
+        {
+            $data=Blog::where('title','like','%'.$search.'%')->first();
+            return redirect()->route('blog',['id'=>$data->id,'slug'=>$data->slug]);
+        }
+        else
+        {
+            return redirect()->route('bloglist',['search'=>$search]);
+        }
+    }
+
+    public function bloglist($search)
+    {
+        $datalist=Blog::where('title','like','%'.$search.'%')->get();
+        return view('home.search_blogs',['search'=>$search,'datalist'=>$datalist]);
     }
 
     public function categoryblogs($id,$slug)
