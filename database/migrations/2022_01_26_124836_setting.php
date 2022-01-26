@@ -13,7 +13,11 @@ class Setting extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('settings',function (Blueprint $table) {
+
+            $table->mediumText('mainpage')->nullable()->after('contact');
+
+        });
     }
 
     /**

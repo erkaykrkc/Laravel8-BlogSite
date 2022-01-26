@@ -103,5 +103,15 @@ $setting = \App\Http\Controllers\HomeController::getsetting();
         </div>
     </div>
 </div>
+
+<div class="container-fluid">
+    <div class="container mt-4"> 
+        <div class="row">
+            <div class="col-lg-12">
+                {!!$setting->mainpage!!}
+            </div>
+        </div>
+    </div>
+</div>
 <!-- News With Sidebar End -->
 @endsection

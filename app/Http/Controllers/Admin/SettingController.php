@@ -102,6 +102,7 @@ class SettingController extends Controller
         $data->aboutus=$request->input('aboutus');
         $data->contact=$request->input('contact');
         $data->references=$request->input('references');
+        $data->mainpage=$request->input('mainpage');
         $data->status=$request->input('status');
         $data->save();
         

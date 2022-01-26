@@ -12,10 +12,6 @@
             <i class="fas fa-rss text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
             <span class="font-weight-medium">My Reviews</span>
         </a>
-        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
-            <i class="fas fa-inbox text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-            <span class="font-weight-medium">My Messages</span>
-        </a>
         <a href="{{ route('user_blogs') }}" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
             <i class="fas fa-inbox text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
             <span class="font-weight-medium">My Blogs</span>

@@ -15,7 +15,10 @@ class HomeController extends Controller
 {
     public static function categorylist()
     {
-        return Category::where('parent_id','=', 0)->with('children')->get();
+        // return Category::where('parent_id','=', 0)->with('children')->get();
+        return Category::where('status', '=', 'true')->where('parent_id', '=', 0)->with('children', function ($q) {
+            $q->where('status', '=', 'true');
+        })->get();
     }
 
     public static function getsetting(){
@@ -24,12 +27,12 @@ class HomeController extends Controller
 
     public static function countreview($id)
     {
-        return Review::where('blog_id',$id)->count();
+        return Review::where('blog_id',$id)->where('status', '=', 'true')->count();
     }
 
     public static function avrgreview($id)
     {
-        return Review::where('blog_id',$id)->average('rate');
+        return Review::where('blog_id',$id)->where('status', '=', 'true')->average('rate');
     }
 
     public function index()
@@ -52,7 +55,7 @@ class HomeController extends Controller
     {
         $data=Blog::find($id);
         $datalist=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder()->get();
-        $reviews=Review::where('blog_id',$id)->get();
+        $reviews=Review::where('blog_id',$id)->where('status', '=', 'true')->get();
         return view('home.blog_detail',['data'=>$data,'datalist'=>$datalist,'reviews'=>$reviews]);      
     }
 
