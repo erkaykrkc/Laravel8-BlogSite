@@ -6,11 +6,12 @@
 @section('content')
  <!-- News With Sidebar Start -->
  <div class="container-fluid mt-3">
-    <div class="container ml-auto">
+    
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 @include('home.usermenu')
             </div>
+            <div class="col-lg-10">
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
@@ -84,8 +85,9 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>    
-        </div>
+        
     </div>
 </div>
 <!-- News With Sidebar End -->

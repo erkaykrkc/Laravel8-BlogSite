@@ -18,7 +18,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $datalist=Blog::all();
+        $datalist=Blog::where('user_id',Auth::id())->get(); 
         return view('home.user_blog',['datalist'=>$datalist]);
     }
 
