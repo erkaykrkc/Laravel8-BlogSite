@@ -1,18 +1,18 @@
 @extends('layouts.home')
 
-@section('title', 'Kullanıcı Profili')
+@section('title', 'Yorum Profili')
 
 
 @section('content')
  <!-- News With Sidebar Start -->
  <div class="container-fluid mt-3">
-    <div class="container">
+    <div class="container ml-auto">
         <div class="row">
             <div class="col-lg-3">
                 @include('home.usermenu')
             </div>
             <div class="col-lg-9">
-                    <table class="table">
+                    <table class="table table-bordered bg-light">
                       <thead>
                         <tr>
                           <th scope="col">ID</th>
@@ -29,17 +29,15 @@
                         @include('home.message')
                         @foreach ($datalist as $rs)  
                         <tr>
-                          <th scope="row">1</th>
                           <td>{{ $rs->id }}</td>
                           <td>
-                              <a href="{{ route('blog',['id'=>$rs->blog_id,'slug'=>$rs->blog->slug]) }}" target="_blank">{{ $rs->blog->title }}</a>
+                              <a class="text-info" href="{{ route('blog',['id'=>$rs->blog_id,'slug'=>$rs->blog->slug]) }}" target="_blank">{{ $rs->blog->title }}</a>
                           </td>
                           <td>{{ $rs->subject }}</td>
                           <td>{{ $rs->review }}</td>
                           <td>{{ $rs->rate }}</td>
                           <td>{{ $rs->status }}</td>
-                          <td>{{ $rs->created_at }}</td>
-                          
+                          <td><small>{{ $rs->created_at }}</small></td>
                           <td>
                             <a href="{{ route('admin_review_delete',['id'=>$rs->id]) }}" onclick="return confirm('Delete ! Are you sure!')">
                                 <img class="rounded mx-auto my-auto d-block" src="{{ asset('assets/admin/images') }}/delete.png" height="35">

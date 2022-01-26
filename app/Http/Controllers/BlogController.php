@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -14,7 +18,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $datalist=Blog::all();
+        return view('blog',['datalist'=>$datalist]);
     }
 
     /**
@@ -24,7 +29,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        $datalist=Category::with('children')->get();
+        return view('blog_add',['datalist'=>$datalist]);
     }
 
     /**
@@ -35,7 +41,23 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Blog();
+        $data->title=$request->input('title');
+        $data->keywords=$request->input('keywords');
+        $data->description=$request->input('description');
+        $data->slug=$request->input('slug');
+        $data->status=$request->input('status');
+        $data->image=Storage::putFile('images',$request->file('image')); // Dosya yükleme
+        $data->category_id=$request->input('category_id');
+        $data->user_id=Auth::id();
+        $data->content=$request->input('content');
+        $data->author_name=$request->input('author_name');
+        $data->author_job=$request->input('author_job');
+        $data->tags=$request->input('tags');
+        $data->references=$request->input('references');
+        $data->save();
+        
+        return redirect()->route('user_blogs');
     }
 
     /**
@@ -55,9 +77,11 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Blog $blog,$id)
     {
-        //
+        $data=Blog::find($id);
+        $datalist=Category::with('children')->get();
+        return view('blog_edit',['data'=>$data,'datalist'=>$datalist]);
     }
 
     /**
@@ -67,9 +91,30 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, Blog $blog,$id)
     {
-        //
+        $data=Blog::find($id);
+        $data->title=$request->input('title');
+        $data->keywords=$request->input('keywords');
+        $data->description=$request->input('description');
+        $data->slug=$request->input('slug');
+        $data->status=$request->input('status');
+        $data->category_id=$request->input('category_id');
+        $data->user_id=Auth::id();
+        $data->content=$request->input('content');
+        $data->author_name=$request->input('author_name');
+        $data->author_job=$request->input('author_job');
+        $data->tags=$request->input('tags');
+        $data->references=$request->input('references');
+
+        if($request->file('image')!=null)
+        {
+            $data->image=Storage::putFile('images',$request->file('image')); // Resim Yükleme
+        }
+
+        $data->save();
+
+        return redirect()->route('user_blogs');
     }
 
     /**
@@ -78,8 +123,11 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Blog $blog,$id)
     {
-        //
+        $data=Blog::find($id);
+
+        $data->delete();
+        return redirect()->route('user_blogs');
     }
 }

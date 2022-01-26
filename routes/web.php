@@ -53,6 +53,17 @@ Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(fu
 
 Route::middleware('auth')->prefix('user')->namespace('user')->group(function(){
     Route::get('/profile',[\App\Http\Controllers\UserController::class,'index'])->name('userprofile');
+
+    /* Controllers -> UserController */ 
+    Route::prefix('blog')->group(function(){    
+        Route::get('/',[BlogController::class,'index'])->name('user_blogs');
+        Route::get('/create',[BlogController::class,'create'])->name('user_blog_add');
+        Route::post('/store',[BlogController::class,'store'])->name('user_blog_store');
+        Route::get('/edit/{id}',[BlogController::class,'edit'])->name('user_blog_edit');
+        Route::post('/update/{id}',[BlogController::class,'update'])->name('user_blog_update');
+        Route::get('/delete/{id}',[BlogController::class,'destroy'])->name('user_blog_delete');
+        Route::get('/show',[BlogController::class,'show'])->name('user_blog_show');
+        });
 });
 
 
