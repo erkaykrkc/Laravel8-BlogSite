@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="section-title">
-                                <h4 class="m-0  font-weight-bold">{{ $datalist->title }}</h4>
+                                <h4 class="m-0  font-weight-bold">{{ $search }}</h4>
                             </div>
                         </div>
                         @foreach ($datalist as $rs)

@@ -38,9 +38,27 @@ class HomeController extends Controller
     public function index()
     {
         $setting=Setting::first();
-        $slider=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->get();
-        $daily=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder()->get();
-        $last=Blog::select('id','category_id','content','title','image','author_name','slug')->limit(4)->inRandomOrder('id')->get();
+        //$slider=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->get();
+        //$daily=Blog::select('id','category_id','title','image','author_name','slug')->limit(4)->inRandomOrder()->get();
+        //$last=Blog::select('id','category_id','content','title','image','author_name','slug')->limit(4)->inRandomOrder('id')->get();
+        $slider = Blog::whereHas('category', function ($q) {
+            $q->whereHas('parent', function ($q2) {
+                $q2->where('parent_id', '=', 0)->where('status', '=', 'true');
+            })->where('status', '=', 'true');
+        })->where('status', '=', 'true')->select('id', 'category_id', 'title', 'image', 'author_name', 'slug')->limit(6)->inRandomOrder()->get();
+
+        $daily = Blog::whereHas('category', function ($q) {
+            $q->whereHas('parent', function ($q2) {
+                $q2->where('parent_id', '=', 0)->where('status', '=', 'true');
+            })->where('status', '=', 'true');
+        })->where('status', '=', 'true')->select('id', 'category_id', 'title', 'image', 'author_name', 'slug')->limit(3)->inRandomOrder()->get();
+
+        $last = Blog::whereHas('category', function ($q) {
+            $q->whereHas('parent', function ($q2) {
+                $q2->where('parent_id', '=', 0)->where('status', '=', 'true');
+            })->where('status', '=', 'true');
+        })->where('status', '=', 'true')->select('id', 'category_id', 'title', 'image', 'author_name', 'slug')->limit(3)->orderByDesc('id')->get();
+
         $data=[
             'setting'=>$setting,
             'slider'=>$slider,
@@ -69,7 +87,7 @@ class HomeController extends Controller
     {
         $search=$request->input('search');
 
-        $count=Blog::where('title','like','%'.$search.'%')->get()->count();
+        /* $count=Blog::where('title','like','%'.$search.'%')->get()->count();
 
         if($count==1)
         {
@@ -79,18 +97,39 @@ class HomeController extends Controller
         else
         {
             return redirect()->route('bloglist',['search'=>$search]);
+        } */ 
+
+        if ($search !== null) {
+            $count = Blog::where('status', '=', 'true')->where('title', 'like', '%' . $search . '%')->get()->count();
+
+            if ($count == 1) {
+                $data = Blog::where('status', '=', 'true')->where('title', 'like', '%' . $search . '%')->first();
+                return redirect()->route('blog', ['id' => $data->id, 'slug' => $data->slug]);
+            } else {
+                return redirect()->route('bloglist', ['search' => $search]);
+            }
+        } else {
+            return redirect()->route('home');
         }
     }
 
     public function bloglist($search)
     {
-        $datalist=Blog::where('title','like','%'.$search.'%')->get();
-        return view('home.search_blogs',['search'=>$search,'datalist'=>$datalist]);
+        /* $datalist=Blog::where('title','like','%'.$search.'%')->get();
+        return view('home.search_blogs',['search'=>$search,'datalist'=>$datalist]); */
+        
+        $datalist = Blog::where('title', 'like', '%' . $search . '%')->whereHas('category', function ($q) {
+            $q->whereHas('parent', function ($q2) {
+                $q2->where('parent_id', '=', 0)->where('status', '=', 'true');
+            })->where('status', '=', 'true');
+        })->where('status', '=', 'true')->get();
+
+        return view('home.search_blogs', ['search' => $search, 'datalist' => $datalist]);
     }
 
     public function categoryblogs($id,$slug)
     {
-        $datalist=Blog::where('category_id',$id)->get();
+        $datalist = Blog::where([['category_id', $id], ['status', '=', 'true']])->get();
         $data=Category::find($id);
         return view('home.category_blogs',['data'=>$data,'datalist'=>$datalist]);
     }
@@ -121,7 +160,7 @@ class HomeController extends Controller
     
     public function faq()
     {
-        $datalist=Faq::all()->sortBy('position');
+        $datalist = Faq::where('status', '=', 'true')->get()->sortBy('position');
         return view('home.faq',['datalist'=>$datalist]);
     }
 
