@@ -39,14 +39,14 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('admin_message') }}">
             <i style="font-size:16px" class="fas fa-envelope-square"></i>
-            <span style="font-size:18px">Contact Messages</span>
+            <span style="font-size:18px">Mesajlar</span>
         </a>
     </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('admin_review') }}">
             <i style="font-size:16px" class="fas fa-comments"></i>
-            <span style="font-size:18px">Reviews</span>
+            <span style="font-size:18px">Yorumlar</span>
         </a>
     </li>
     <li class="nav-item">
@@ -55,6 +55,7 @@
             <span style="font-size:18px">FAQ</span>
         </a>
     </li>
+    
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

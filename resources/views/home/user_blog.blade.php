@@ -23,6 +23,7 @@
                       <i class="fas fa-check"></i>
                   </span>
                   <span class="text">Blog Ekle</span>
+                  @include('home.message')
                 </a>
               </div>
               <div class="card-body">

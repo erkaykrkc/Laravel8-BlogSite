@@ -20,22 +20,19 @@ $setting = \App\Http\Controllers\HomeController::getsetting();
  <div class="container-fluid">
     <div class="container mt-3">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <!-- News Detail Start -->
                 <div class="position-relative mb-3">
                     <div class="bg-white border border-top-0 p-4">
-                        <div class="mb-3">
-                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                href="">İletişim</a>
-                        </div>
-                        <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">KarBlog İletişim Bilgileri</h1>
+                        
+                        <h1 class="mb-3 text-secondary text-uppercase text-center font-weight-bold">İletişim</h1>
                         <p>{!! $setting->contact !!}</p>
                         
                     </div>
                 </div>
                 <!-- News Detail End -->                
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                 <div class="section-title mb-3">
                     <h4 class="m-0 text-uppercase font-weight-bold">Bizimle İletişime Geçin</h4>
                 </div>

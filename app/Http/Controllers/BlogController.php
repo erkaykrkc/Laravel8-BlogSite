@@ -57,7 +57,7 @@ class BlogController extends Controller
         $data->references=$request->input('references');
         $data->save();
         
-        return redirect()->route('user_blogs');
+        return redirect()->route('user_blogs')->with('success','Blog Added Successfully.');
     }
 
     /**

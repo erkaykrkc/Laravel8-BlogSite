@@ -19,6 +19,9 @@
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                                 href="{{ route('blog',['id'=>$rs->id,'slug'=>$rs->slug]) }}">{{ $rs->category->title }}</a>
                                 </div>
+                                <div class="mb-4 badge badge-success text-uppercase font-weight-semi-bold p-2 mr-2">
+                                    Yazar : {{ $rs->author_name }}
+                                </div>
                                 <a class="h3 m-0 text-white text-uppercase text-info font-weight-semi-bold" href="{{ route('blog',['id'=>$rs->id,'slug'=>$rs->slug]) }}">{{ $rs->title }}</a>
                             </div>
                         </div>                        
