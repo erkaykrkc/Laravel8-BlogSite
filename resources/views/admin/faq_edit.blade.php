@@ -29,43 +29,10 @@
         </div>
         <div class="form-group">
           <label>Answer</label>
-          <textarea class="summernote" name="answer">{{$data->content}}</textarea>
-          <div>
-            
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Image</label>
-          <input type="file" name="image" class="form-control">
-          @if($rs->image)
-          {
-             <img src="{{ Storage::url('$rs->image')}}" height="60" alt="">
-          }
-         @endif
-        </div>
-    
-        <div class="form-group">
-          <label>Author Name</label>
-          <input type="text" name="author_name" value="{{$data->author_name}}" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Author Job</label>
-          <input type="text" name="author_job" value="{{$data->author_job}}" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Tags</label>
-          <input type="text" name="tags" value="{{$data->tags}}" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>References</label>
-          <textarea class="summernote" name="references">{{$data->references}}</textarea>
+          <textarea class="summernote" name="answer">{{$data->answer}}</textarea>
           <div>
             <script>
-              $('.summernote').summernote({
-                placeholder: 'Referansları yazınız.',
-                tabsize: 2,
-                height: 100
-              });
+              CKEDITOR.replace( 'answer' );
             </script>
           </div>
 
