@@ -19,7 +19,7 @@ class BlogController extends Controller
     public function index()
     {
         $datalist=Blog::all();
-        return view('blog',['datalist'=>$datalist]);
+        return view('home.user_blog',['datalist'=>$datalist]);
     }
 
     /**
@@ -30,7 +30,7 @@ class BlogController extends Controller
     public function create()
     {
         $datalist=Category::with('children')->get();
-        return view('blog_add',['datalist'=>$datalist]);
+        return view('home.user_blog_add',['datalist'=>$datalist]);
     }
 
     /**
@@ -81,7 +81,7 @@ class BlogController extends Controller
     {
         $data=Blog::find($id);
         $datalist=Category::with('children')->get();
-        return view('blog_edit',['data'=>$data,'datalist'=>$datalist]);
+        return view('home.user_blog_edit',['data'=>$data,'datalist'=>$datalist]);
     }
 
     /**

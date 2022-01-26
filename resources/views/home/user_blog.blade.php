@@ -1,17 +1,29 @@
 @extends('layouts.home')
 
-@section('title', 'Kullanıcı Blogları')
+@section('title', 'Bloglarım')
 
 
 @section('content')
  <!-- News With Sidebar Start -->
  <div class="container-fluid mt-3">
-    <div class="container">
+    <div class="container ml-auto">
         <div class="row">
             <div class="col-lg-3">
                 @include('home.usermenu')
             </div>
-            <div class="col-lg-9">
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class=" font-weight-bold text-primary">
+                  Blog Listesi
+                </h6>
+                <a href="{{ route('user_blog_add') }}" class="btn btn-success btn-icon-split float-right">
+                  <span class="icon text-white-50">
+                      <i class="fas fa-check"></i>
+                  </span>
+                  <span class="text">Blog Ekle</span>
+                </a>
+              </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table
@@ -43,11 +55,11 @@
                         </td>
                         <td>{{ $rs->title }}</td>
                         <td>
-                             @if($rs->image)
-                             
-                               <img src="{{ Storage::url($rs->image)}}" height="60" width="100" alt="">
-                             
-                             @endif
+                            @if($rs->image)
+                            
+                              <img src="{{ Storage::url($rs->image)}}" height="60" width="100" alt="">
+                            
+                            @endif
                         </td>
                         <td><a href="{{ route('user_image_add',['blog_id'=>$rs->id]) }}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100, height=700')">
                           <img class="rounded mx-auto my-2 d-block" src="{{ asset('assets/admin/images') }}/gallery.png" height="35">
@@ -72,6 +84,7 @@
                 </div>
               </div>
             </div>
+          </div>    
         </div>
     </div>
 </div>

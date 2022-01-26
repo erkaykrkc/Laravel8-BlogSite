@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,15 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function(){
         Route::post('/update/{id}',[BlogController::class,'update'])->name('user_blog_update');
         Route::get('/delete/{id}',[BlogController::class,'destroy'])->name('user_blog_delete');
         Route::get('/show',[BlogController::class,'show'])->name('user_blog_show');
+    });
+    
+     /* Blog Images Routes */
+
+     Route::prefix('image')->group(function(){    
+        Route::get('/create/{blog_id}',[\App\Http\Controllers\Admin\ImageController::class,'create'])->name('user_image_add');
+        Route::post('/store/{blog_id}',[\App\Http\Controllers\Admin\ImageController::class,'store'])->name('user_image_store');
+        Route::get('/delete/{id}/{blog_id}',[\App\Http\Controllers\Admin\ImageController::class,'destroy'])->name('user_image_delete');
+        Route::get('/show',[\App\Http\Controllers\Admin\ImageController::class,'show'])->name('user_image_show');
         });
 });
 
@@ -92,7 +102,7 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::get('/show',[\App\Http\Controllers\Admin\BlogController::class,'show'])->name('admin_blog_show');
     });
 
-    /*Images Routes */
+    /* Blog Images Routes */
 
     Route::prefix('image')->group(function(){    
     Route::get('/create/{blog_id}',[\App\Http\Controllers\Admin\ImageController::class,'create'])->name('admin_image_add');
