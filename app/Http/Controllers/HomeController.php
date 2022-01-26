@@ -9,7 +9,7 @@ use App\Models\Setting;
 use App\Models\Message;
 use App\Models\Blog;
 use App\Models\Review;
-
+use App\Models\Faq;
 
 class HomeController extends Controller
 {
@@ -118,7 +118,8 @@ class HomeController extends Controller
     
     public function faq()
     {
-        return view('home.faq');
+        $datalist=Faq::all()->sortBy('position');
+        return view('home.faq',['datalist'=>$datalist]);
     }
 
     public function references()
