@@ -34,7 +34,7 @@
                                         <br>
                                         <small>Tags : {{ $rs->tags }}  </small> 
                                     </div>
-                                    <a class="h5 d-block pt-3 text-secondary text-uppercase " href="">{{ $rs->title }}</a>
+                                    <a class="h5 d-block pt-3 text-secondary text-uppercase " href="{{ route('blog',['id'=>$rs->id,'slug'=>$rs->slug]) }}">{{ $rs->title }}</a>
                                 </div>
                                 <div class="d-flex justify-content-between bg-white border border-top-2 p-4">
                                     <div class="d-flex align-items-center">
