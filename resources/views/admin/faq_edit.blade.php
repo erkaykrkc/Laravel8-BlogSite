@@ -35,11 +35,6 @@
               CKEDITOR.replace( 'answer' );
             </script>
           </div>
-
-        </div>
-        <div class="form-group">
-          <label>Slug</label>
-          <input type="text" name="slug"  value="{{$data->slug}}"  class="form-control">
         </div>
         <div class="form-group">
               <label class="mr-sm-2" for="inlineFormCustomSelect">Status</label>
