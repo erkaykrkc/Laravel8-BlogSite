@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Yorum Düzenle')
+@section('title','Kullanıcı Detayı')
 
 @section('javascript')
 
@@ -21,11 +21,9 @@
  <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-3 pb-3 text-gray-800 border-bottom-primary">Mesaj Düzenle</h1>
+    <h1 class="h3 mb-3 pb-3 text-gray-800 border-bottom-primary">Kullanıcı Detayı</h1>
     <br>
     @include('home.message')
-    <form action="{{ route('admin_review_update',['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">
-        @csrf
         <div class="form-group">
             <div class="card-body">
               <div class="table-responsive">
@@ -36,62 +34,62 @@
                     </tr>
                     <tr>
                       <th>Name</th>
+                      <td>{{ $data->name }}</td>
+                    </tr>
+                    <tr>
+                      <th>Email</th>
+                      <td>{{ $data->email}}</td>
+                    </tr>
+                    <tr>
+                      <th>Phone</th>
+                      <td>{{ $data->phone}}</td>
+                    </tr>
+                    <tr>
+                      <th>Address</th>
+                      <td>{{ $data->address}}</td>
+                    </tr>
+                    <tr>
+                      <th>Date</th>
+                      <td>{{ $data->created_at}}</td>
+                    </tr>
+                    <tr>
+                      <th>Roles</th>
                       <td>
-                       {{ $data->user->name }}
+                        <table>
+                          @foreach ($data->roles as $row)
+                            <tr>
+                              <td>
+                                 {{ $row->name }}
+                              </td>
+                              <td>
+                                <a href="{{ route('admin_user_role_delete',['userid'=>$data->id,'roleid'=>$row->id]) }}" onclick="return confirm('It will be deleted ! Are you sure ?')">
+                                  <img class="rounded mx-auto my-auto d-block" src="{{ asset('assets/admin/images') }}/delete.png" height="25">
+                                </a> 
+                              </td>
+                            </tr>
+                          @endforeach
+                        </table>
                       </td>
                     </tr>
                     <tr>
-                      <th>Blog</th>
-                      <td>{{ $data->blog->title }}</td>
-                    </tr>
-                    <tr>
-                      <th>Subject</th>
-                      <td>{{ $data->subject }}</td>
-                    </tr>
-                    <tr>
-                      <th>Review</th>
-                      <td>{{ $data->review }}</td>
-                    </tr>
-                    <tr>
-                      <th>Rate</th>
-                      <td>{{ $data->rate }}</td>
-                    </tr>
-                    <tr>
-                      <th>IP</th>
-                      <td>{{ $data->IP }}</td>
-                    </tr>
-                    <tr>
-                      <th>Created Date</th>
-                      <td>{{ $data->created_at }}</td>
-                    </tr>
-                    <tr>
-                      <th>Updated Date</th>
-                      <td>{{ $data->updated_at }}</td>
-                    </tr>
-                    <tr>
-                      <th>Status</th>
+                      <th> Add Role </th>
                       <td>
-                          <select name="status">
-                            <option selected="{{ $data->status }}"></option>
-                            <option>True</option>
-                            <option>False</option>
-                          </select>
+                          <form role="form" action="{{ route('admin_user_role_add',['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">
+                          @csrf
+                            <select name="roleid">
+                                @foreach ($datalist as $rs)
+                                  <option value="{{ $rs->id }}"> {{ $rs->name }}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn btn-primary">Add Role</button>
+                          </form>
                       </td>
                     </tr>
-                    <tr>
-                      <td></td>
-                      <td> 
-                      <div>
-                        <button type="submit" class="btn btn-primary mb-3">Yorumu Güncelle</button> 
-                      </div>
-                      </td>
-                    </tr>
+                    
                 </table>
               </div>
             </div>
         </div>
-      </form>
-
 </div>
 <!-- /.container-fluid -->
 
