@@ -80,15 +80,21 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function(){
 /* Admin - Category Route */
 
 Route::middleware('auth')->prefix('admin')->group(function(){
-    Route::get('/',[\App\Http\Controllers\Admin\HomeController::class,'index'])->name('admin_home');
 
-    Route::get('/category',[\App\Http\Controllers\Admin\CategoryController::class,'index'])->name('admin_category');
-    Route::get('/category/add',[\App\Http\Controllers\Admin\CategoryController::class,'add'])->name('admin_category_add');
-    Route::post('/category/create',[\App\Http\Controllers\Admin\CategoryController::class,'create'])->name('admin_category_create');
-    Route::get('/category/edit/{id}',[\App\Http\Controllers\Admin\CategoryController::class,'edit'])->name('admin_category_edit');
-    Route::post('/category/update/{id}',[\App\Http\Controllers\Admin\CategoryController::class,'update'])->name('admin_category_update');
-    Route::get('/category/delete/{id}',[\App\Http\Controllers\Admin\CategoryController::class,'destroy'])->name('admin_category_delete');
-    Route::get('/category/show',[\App\Http\Controllers\Admin\CategoryController::class,'show'])->name('admin_category_show');
+    /* Admin Role */
+    Route::middleware('admin')->group(function(){
+        Route::get('/',[\App\Http\Controllers\Admin\HomeController::class,'index'])->name('admin_home');
+
+        Route::get('/category',[\App\Http\Controllers\Admin\CategoryController::class,'index'])->name('admin_category');
+        Route::get('/category/add',[\App\Http\Controllers\Admin\CategoryController::class,'add'])->name('admin_category_add');
+        Route::post('/category/create',[\App\Http\Controllers\Admin\CategoryController::class,'create'])->name('admin_category_create');
+        Route::get('/category/edit/{id}',[\App\Http\Controllers\Admin\CategoryController::class,'edit'])->name('admin_category_edit');
+        Route::post('/category/update/{id}',[\App\Http\Controllers\Admin\CategoryController::class,'update'])->name('admin_category_update');
+        Route::get('/category/delete/{id}',[\App\Http\Controllers\Admin\CategoryController::class,'destroy'])->name('admin_category_delete');
+        Route::get('/category/show',[\App\Http\Controllers\Admin\CategoryController::class,'show'])->name('admin_category_show');
+    
+
+   
 
     /* Blog Routes */
 
@@ -146,6 +152,8 @@ Route::middleware('auth')->prefix('admin')->group(function(){
         Route::get('/show',[\App\Http\Controllers\Admin\FaqController::class,'show'])->name('admin_faq_show');
         });
 
-});
+    }); /* Admin */
+
+}); /* Auth */ 
 
 
