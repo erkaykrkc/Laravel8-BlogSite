@@ -13,23 +13,12 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class=" font-weight-bold text-primary">
-            Blog Listesi
+            Kullanıcı Listesi
           </h6>
-          <a href="{{ route('admin_user_add') }}" class="btn btn-success btn-icon-split float-right">
-            <span class="icon text-white-50">
-                <i class="fas fa-check"></i>
-            </span>
-            <span class="text">Kullanıcı Ekle</span>
-        </a>
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table
-              class="table table-bordered"
-              id="dataTable"
-              width="100%"
-              cellspacing="0"
-            >
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -50,7 +39,7 @@
                   <td>
                        @if($rs->profile_photo_path)
                        
-                         <img src="{{ Storage::url($rs->profile_photo_path)}}" height="60" width="100" alt="">
+                         <img src="{{ Storage::url($rs->profile_photo_path)}}" height="100" width="100" alt="">
                        
                        @endif
                   </td>
@@ -60,12 +49,12 @@
                   <td>{{ $rs->address }}</td>
                   <td>
                     @foreach ($rs->roles as $row)
-                          {{ $rs->roles }}
+                          {{ $row->name }} <br>
                     @endforeach
-                    <a href="{{ route('admin_user_roles',['id'=>$rs->id]) }}" onclick="return !window.open(this.href,'','top=50 left=100 width=800, height=600')" ></a>
-                    <i class="nav-icon fas fa-plus-square"></i>
+                    <a href="{{ route('admin_user_roles',['id'=>$rs->id]) }}" onclick="return !window.open(this.href,'','top=50 left=200 width=1000,height=800')">
+                    <i class="nav-icon fas fa-plus-circle"></i>
+                    </a>
                   </td>
-                  <td>{{ $rs->status }}</td>
                   <td> 
                     <a href="{{ route('admin_user_edit',['id'=>$rs->id]) }}">
                       <img class="rounded mx-auto my-auto d-block" src="{{ asset('assets/admin/images') }}/edit.png" height="35">

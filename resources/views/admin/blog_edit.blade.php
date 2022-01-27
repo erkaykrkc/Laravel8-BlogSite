@@ -29,8 +29,6 @@
           <label>Category</label>
           <div class="form-group">
             <select class="custom-select mr-sm-2" name="category_id" id="inlineFormCustomSelect">
-
-
               @foreach ($datalist as $rs)
               <option  value="{{ $rs->id }}" @if ($rs->id==$data->category_id) selected="selected" @endif > 
                 {{ \App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title) }}

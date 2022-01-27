@@ -33,9 +33,9 @@
                 </div> 
             </div>  
             <div class="navbar-nav py-0">
-                @auth
-                <a href="{{ route('myprofile') }}" class="nav-link text-info">{{Auth::user()->name}} <small> {{ Auth::user()->roles->pluck('name') }} </small></a>
                 
+                @auth
+                <a href="{{ route('myprofile') }}" class="nav-link text-info">{{Auth::user()->name}}</a>
                 <a href="{{ route('logout') }}" class="nav-item nav-link text-info text-danger">Çıkış</a>
                 @endauth
                 

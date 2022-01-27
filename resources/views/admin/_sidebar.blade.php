@@ -55,6 +55,13 @@
             <span style="font-size:18px">FAQ</span>
         </a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('admin_users') }}">
+            <i style="font-size:16px" class="fas fa-users"></i>
+            <span style="font-size:18px">Kullanıcılar</span>
+        </a>
+    </li>
     
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

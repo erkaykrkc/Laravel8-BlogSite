@@ -181,8 +181,11 @@
                               {{ Auth::user()->name }}
                           @endauth
                       </span>
-                      <img class="img-profile rounded-circle"
-                          src="{{ asset('assets') }}/admin/img/undraw_profile.svg">
+                      @if(Auth::user()->profile_photo_path)
+                       
+                        <img class="img-profile rounded-circle" src="{{ Storage::url(Auth::user()->profile_photo_path)}}" style="height:50px; width:50px;">
+                       
+                     @endif
                   </a>
                   <!-- Dropdown - User Information -->
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
