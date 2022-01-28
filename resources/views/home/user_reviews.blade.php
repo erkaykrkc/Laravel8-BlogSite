@@ -6,13 +6,12 @@
 @section('content')
  <!-- News With Sidebar Start -->
  <div class="container-fluid mt-3">
-    <div class="container ml-auto">
         <div class="row">
             <div class="col-lg-3">
                 @include('home.usermenu')
             </div>
             <div class="col-lg-9">
-                    <table class="table table-bordered bg-light">
+                    <table class="table table-bordered bg-light" style="border-radius: 15px">
                       <thead>
                         <tr>
                           <th scope="col">ID</th>
@@ -49,7 +48,6 @@
                     </table>
             </div>
         </div>
-    </div>
 </div>
 <!-- News With Sidebar End -->
 

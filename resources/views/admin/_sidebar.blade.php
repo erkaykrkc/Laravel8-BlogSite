@@ -70,7 +70,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('admin_setting') }}">
             <i style="font-size:16px" class="fas fa-envelope-square"></i>
-            <span style="font-size:18px">Settings</span>
+            <span style="font-size:18px">Ayarlar</span>
         </a>
     </li>
 

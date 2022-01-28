@@ -6,7 +6,7 @@
 @section('content')
  <!-- News With Sidebar Start -->
  <div class="container-fluid mt-3">
-    <div class="container">
+    
         <div class="row">
             <div class="col-lg-3">
                 @include('home.usermenu')
@@ -15,7 +15,7 @@
                 @include('profile.show')
             </div>
         </div>
-    </div>
+    
 </div>
 <!-- News With Sidebar End -->
 

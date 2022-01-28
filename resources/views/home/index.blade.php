@@ -97,21 +97,21 @@ $setting = \App\Http\Controllers\HomeController::getsetting();
                             </div>
                         </div>
                     </div>
-                    @endforeach                   
+                    @endforeach
+                    <div class="container-fluid">
+                        <div class="container mt-3 bg-light"> 
+                            <div class="row">
+                                <div class="col-lg-12 pl-4 pt-3">
+                                    {!!$setting->mainpage!!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="container mt-4"> 
-        <div class="row">
-            <div class="col-lg-12">
-                {!!$setting->mainpage!!}
-            </div>
-        </div>
-    </div>
-</div>
 <!-- News With Sidebar End -->
 @endsection

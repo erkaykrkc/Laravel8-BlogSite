@@ -28,9 +28,7 @@ $setting = \App\Http\Controllers\HomeController::getsetting();
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                 href="">Hakkımızda</a>
                         </div>
-                        <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">KarBlog Hakkımızda</h1>
-                        <p>{!! $setting->aboutus !!}</p>
-                    
+                        <p>{!! $setting->aboutus !!}</p>   
                     </div>
                 </div>
                 <!-- News Detail End -->                
