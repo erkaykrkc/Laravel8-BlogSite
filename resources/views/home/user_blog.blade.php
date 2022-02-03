@@ -39,7 +39,7 @@
                         <th>Category</th>
                         <th>Title</th>
                         <th>Image</th>
-                        <th>Image Gallery</th>
+                       
                         <th>Author Name</th>
                         <th>Author Job</th>
                         <th>Status</th>
@@ -62,9 +62,7 @@
                             
                             @endif
                         </td>
-                        <td><a href="{{ route('user_image_add',['blog_id'=>$rs->id]) }}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100, height=700')">
-                          <img class="rounded mx-auto my-2 d-block" src="{{ asset('assets/admin/images') }}/gallery.png" height="35">
-                        </a></td>
+                        
                         <td>{{ $rs->author_name }}</td>
                         <td>{{ $rs->author_job }}</td>
                         <td>{{ $rs->status }}</td>
